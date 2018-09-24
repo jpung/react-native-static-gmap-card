@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/josephpung/gmaps-static-card.git"
+    "url": "git+https://github.com/josephpung/react-native-static-gmap-card"
   },
   "keywords": [
     "google",
@@ -18,9 +18,9 @@
   "author": "Joseph Pung",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/josephpung/gmaps-static-card/issues"
+    "url": "https://github.com/josephpung/react-native-static-gmap-card/issues"
   },
-  "homepage": "https://gitlab.com/josephpung/gmaps-static-card#README",
+  "homepage": "https://github.com/josephpung/react-native-static-gmap-card#README",
   "dependencies": {
     "axios": "^0.18.0",
     "react-native-renderer": "^15.5.3"
