@@ -1,0 +1,28 @@
+{
+  "name": "react-native-static-gmap-card",
+  "version": "1.1.10",
+  "description": "card component using static google maps api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/josephpung/gmaps-static-card.git"
+  },
+  "keywords": [
+    "google",
+    "maps",
+    "static"
+  ],
+  "author": "Joseph Pung",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/josephpung/gmaps-static-card/issues"
+  },
+  "homepage": "https://gitlab.com/josephpung/gmaps-static-card#README",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "react-native-renderer": "^15.5.3"
+  }
+}
