@@ -33,7 +33,7 @@ import CardComponent from 'react-native-static-gmap-card'
             subtitle='12 August 2018'
             footerItems={[{backgroundColor: 'rgb(255,200,199)', text: 'DBS Savings'}, {backgroundColor: 'rgb(255,234,199)', text: 'Groceries'}]}
             value='-33.50'
-            apiKey='AIzaSyB0HYm5BduyJMQg0AJTs9BW2FkY0pfYWJw'
+            apiKey='xxxx'
             // width ={}
             height = {150}
             // mapZoom={17}
