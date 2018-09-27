@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Dimensions,TouchableHighlight, Linking } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions,TouchableHighlight, Linking, ScrollView } from 'react-native';
+import { Font } from 'expo';
 import axios from 'axios'
 
 export default class CardComponent extends React.Component {
@@ -7,9 +8,9 @@ export default class CardComponent extends React.Component {
     lat: 0,
     lng: 0,
     noMap: false,
-    apiKeyValid: true
+    apiKeyValid: true,
   }
-  componentDidMount(){
+  async componentDidMount(){
     const { width = Dimensions.get('window').width, height = 180, searchTerm, mapZoom = 17, apiKey, grayscale= false } = this.props
     const { lat, lng } = this.state
     this.setState({ noMap: false})
@@ -42,30 +43,49 @@ export default class CardComponent extends React.Component {
   render() {
     const { imageUrl, noMap, lat, lng, apiKeyValid } = this.state
     const { mapZoom } = this.props
-    const { width = Dimensions.get('window').width, height = 180, searchTerm, title, footer, value, logoUrl='nil' } = this.props
-    return (
-      <View style={styles.container}>
-        <View style={styles.header}>
+    const { width = Dimensions.get('window').width, height = 150, searchTerm, title, subtitle, value, footerItems } = this.props
+
+      return (
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <View style={styles.mainHeader}>
+              <Text style={styles.title}>{title.toUpperCase()}</Text>
+              <Text style={styles.subtitle}>{subtitle}</Text>
+            </View>
+            <View style={styles.valueHeader}>
+              <Text style={styles.value}>{value}</Text>
+            </View>
+          </View>
+          {noMap || !apiKeyValid ? <Text style={styles.errorMsg}> {apiKeyValid ? 'NO MAP FOUND' : 'API Key Error, please check the key or your that your permissions are enabled for maps'}</Text> :
+          <TouchableHighlight onPress={() => Linking.openURL(`https://www.google.com/maps/search/?api=1&zoom=${mapZoom}&query=${searchTerm}`)}>
           <Image
-            style={styles.icon}
-            resizeMode="cover"
-            source={{ uri: logoUrl}}
-            onClick
-          />
-        <Text style={styles.title}>{title}</Text><Text style={styles.value}>{value}</Text>
+              style={{width: width-12, height: height}}
+              resizeMode="cover"
+              source={{ uri: imageUrl}}
+            />
+          </TouchableHighlight>
+          }
+          <ScrollView horizontal={true} style={styles.footer}>
+          {footerItems.map((item,i)=>{
+            return(
+              <View
+                 style={{
+                    backgroundColor: item.backgroundColor,
+                    borderRadius: 10,
+                    margin: 10,
+                    minWidth: 100,
+                    paddingLeft: 15,
+                    paddingRight: 15,
+                    paddingTop: 5,
+                    paddingBottom: 5}}
+                    key={i}>
+                <Text style={{ color: '#5f5f5f', textAlign: 'center'}}>{item.text}</Text>
+              </View>
+            )
+          })}
+        </ScrollView>
         </View>
-        {noMap || !apiKeyValid ? <Text style={styles.errorMsg}> {apiKeyValid ? 'NO MAP FOUND' : 'API Key Error, please check the key or your that your permissions are enabled for maps'}</Text> :
-        <TouchableHighlight onPress={() => Linking.openURL(`https://www.google.com/maps/search/?api=1&zoom=${mapZoom}&query=${searchTerm}`)}>
-        <Image
-            style={{width: width-12, height: height}}
-            resizeMode="cover"
-            source={{ uri: imageUrl}}
-          />
-        </TouchableHighlight>
-        }
-      <Text style={styles.footer}>{footer}</Text>
-      </View>
-    );
+      );
   }
 }
 
@@ -73,7 +93,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     borderWidth: 1,
-    borderRadius: 3,
+    borderRadius: 8,
     borderColor: '#ddd',
     borderBottomWidth: 0,
     shadowColor: '#000',
@@ -83,14 +103,25 @@ const styles = StyleSheet.create({
     elevation: 1,
     marginLeft: 5,
     marginRight: 5,
-    marginTop: 10,
+    marginTop: 10
   },
-  header: {
-    height: 60,
+  header:{
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 15
+    paddingLeft: 10,
+    paddingRight: 10
+  },
+  mainHeader: {
+    height: 80,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    // alignItems: 'center',
+    padding: 20,
+    paddingRight: 5,
+    paddingLeft: 5
+  },
+  valueHeader:{
+    padding: 20
   },
   icon:{
     borderWidth:1,
@@ -102,21 +133,21 @@ const styles = StyleSheet.create({
     borderRadius:20,
   },
   title:{
-    fontSize: 20
+    fontSize: 20,
+    color: '#272727'
+  },
+  subtitle:{
+    fontSize: 12,
+    color: '#5f5f5f'
   },
   value:{
-    fontSize: 23,
+    fontSize: 26,
     color: 'rgb(255,47,47)',
-    fontWeight: '700'
   },
   footer:{
-    fontSize: 8,
-    textAlign: 'right',
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingRight: 5,
-    fontStyle: 'italic',
-    color: '#343a44'
+    flexDirection: 'row',
+    paddingLeft: 5,
+    paddingRight: 5
   },
   errorMsg:{
     fontWeight: 'bold',

@@ -5,18 +5,19 @@
 ```
  npm install react-native-static-gmap-card
 
-
-import Card from 'react-native-static-gmap-card'
 ```
 
 
 ### Parameters
 
 * [title] | STRING - Header of the card
-* [footer] | STRING - Footer text
+* [subtitle] | STRING - Text below header
+* [footerItems] | ARRAY - Array of objects that hold the footer items, takes in backgroundColor and text props. Turn into a scrollable section if the items take up more than card width.
+> e.g {backgroundColor: 'rgb(255,200,199)', text: 'DBS Savings'}
+
 * [value] | STRING - Transaction text on the top right of card
-* [width] | NUMBER - width of card, defaults to screen width
-* [height] | NUMBER - height of card, defaults to 180px
+* [width] | NUMBER - width of map/card, defaults to screen width
+* [height] | NUMBER - height of map, defaults to 150px
 * [apiKey] | STRING - Google maps API key, if you are receiving an error, please make sure you have enabled the relevant maps access.
 * [mapZoom] | NUMBER - Zoom level for the static map, defaults to 17
 * [searchTerm] | STRING - Location to search for
@@ -24,19 +25,28 @@ import Card from 'react-native-static-gmap-card'
 
 ### Example
 ```
+
+import CardComponent from 'react-native-static-gmap-card'
+
 <CardComponent
-          title='West Coast Road'
-          footer='2nd July 2018 13:30'
-          value='$99.00'
-          logoUrl='http://www.sampleimage.com'
-          apiKey='xxxx'
-          width ={}
-          height = {180}
-          mapZoom={17}
-          grayscale={false}
-          searchTerm = {'West Coast'}
-        />
+            title='paradise classico'
+            subtitle='12 August 2018'
+            footerItems={[{backgroundColor: 'rgb(255,200,199)', text: 'DBS Savings'}, {backgroundColor: 'rgb(255,234,199)', text: 'Groceries'}]}
+            value='-33.50'
+            apiKey='AIzaSyB0HYm5BduyJMQg0AJTs9BW2FkY0pfYWJw'
+            // width ={}
+            height = {150}
+            // mapZoom={17}
+            grayscale={true}
+            searchTerm = {'Paradise Classic Sentosa'}
+          />
 ```
+
+## Result
+<img src="./sample.jpg" alt="drawing" width="400"/>
+
+# Patch Changes
+[1.2.2] - Removed logo and added footer items. Changed styling for card.
 # Features
 
 Clicking on map opens google maps with location
