@@ -17,7 +17,7 @@
 
 * [value] | STRING - Transaction text on the top right of card
 * [width] | NUMBER - width of map/card, defaults to screen width
-* [height] | NUMBER - height of map, defaults to 150px
+* [height] | NUMBER - height of map, defaults to 120px
 * [apiKey] | STRING - Google maps API key, if you are receiving an error, please make sure you have enabled the relevant maps access.
 * [mapZoom] | NUMBER - Zoom level for the static map, defaults to 17
 * [searchTerm] | STRING - Location to search for

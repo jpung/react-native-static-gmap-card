@@ -43,7 +43,7 @@ export default class CardComponent extends React.Component {
   render() {
     const { imageUrl, noMap, lat, lng, apiKeyValid } = this.state
     const { mapZoom } = this.props
-    const { width = Dimensions.get('window').width, height = 150, searchTerm, title, subtitle, value, footerItems } = this.props
+    const { width = Dimensions.get('window').width, height = 120, searchTerm, title, subtitle, value, footerItems } = this.props
 
       return (
         <View style={styles.container}>
@@ -79,7 +79,7 @@ export default class CardComponent extends React.Component {
                     paddingTop: 5,
                     paddingBottom: 5}}
                     key={i}>
-                <Text style={{ color: '#5f5f5f', textAlign: 'center'}}>{item.text}</Text>
+                <Text style={{ color: '#5f5f5f', textAlign: 'center', fontSize: 10}}>{item.text}</Text>
               </View>
             )
           })}
@@ -115,13 +115,13 @@ const styles = StyleSheet.create({
     height: 80,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    // alignItems: 'center',
     padding: 20,
     paddingRight: 5,
     paddingLeft: 5
   },
   valueHeader:{
-    padding: 20
+    padding: 20,
+    paddingRight: 0
   },
   icon:{
     borderWidth:1,
@@ -133,15 +133,16 @@ const styles = StyleSheet.create({
     borderRadius:20,
   },
   title:{
-    fontSize: 20,
-    color: '#272727'
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#525050'
   },
   subtitle:{
-    fontSize: 12,
+    fontSize: 10,
     color: '#5f5f5f'
   },
   value:{
-    fontSize: 26,
+    fontSize: 18,
     color: 'rgb(255,47,47)',
   },
   footer:{
