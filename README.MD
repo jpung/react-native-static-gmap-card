@@ -45,8 +45,8 @@ import CardComponent from 'react-native-static-gmap-card'
 ## Result
 <img src="./sample.jpg" alt="drawing" width="400"/>
 
-# Patch Changes
-[1.2.2] - Removed logo and added footer items. Changed styling for card.
+# Patch Notes
+[2.2.0] - Removed logo and added footer items. Changed styling for card.
 # Features
 
 Clicking on map opens google maps with location
